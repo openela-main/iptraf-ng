@@ -1,14 +1,15 @@
 Summary:        A console-based network monitoring utility
 Name:           iptraf-ng
-Version:        1.2.1
-Release:        4%{?dist}
+Version:        1.2.2
+Release:        1%{?dist}
 Source0:        https://github.com/iptraf-ng/iptraf-ng/archive/v%{version}.tar.gz
 Source1:        %{name}-logrotate.conf
 Source2:        %{name}-tmpfiles.conf
 URL:            https://github.com/iptraf-ng/iptraf-ng/
-License:        GPLv2+
+License:        GPL-2.0-or-later
 BuildRequires:  gcc
 BuildRequires:  ncurses-devel
+Requires:       logrotate
 Obsoletes:      iptraf < 3.1
 Provides:       iptraf = 3.1
 
@@ -68,6 +69,10 @@ install -d -m 0755 %{buildroot}/run/%{name}/
 %{_prefix}/lib/tmpfiles.d/%{name}.conf
 
 %changelog
+* Sun Feb 02 2025 Andrea Claudi <aclaudi@redhat.com> - 1.2.2-1.el9
+- New version 1.2.2 (Andrea Claudi) [RHEL-77280]
+- Fix buffer overflow via ifaces.c (Andrea Claudi) [RHEL-71493]
+
 * Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 1.2.1-4
 - Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
   Related: rhbz#1991688
